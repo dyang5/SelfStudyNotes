@@ -1,0 +1,69 @@
+\documentclass[11pt]{article}
+\usepackage{styletemplate}
+
+\begin{document}
+
+\title{\LARGE \textbf{Math 356: Number Theory (Rutgers)}}
+\date{Winter Break, 2023}
+\author{\textsc{David Yang}}
+
+\maketitle
+
+\begin{abstract}
+These notes arise from lecture videos of Math 356: Number Theory (Quadratic Forms), originally taught by 
+Professor \href{https://sites.math.rutgers.edu/~alexk/}{Alex Kontorovich}, at Rutgers University. I am grateful
+to Professor Kontorovich for releasing the \href{https://www.youtube.com/playlist?list=PLs6rMe3K87LEwc77iVba5AsAUPC1qVowy}{lecture videos} online. 
+I am responsible for all faults in this document, mathematical or otherwise; any merits of the
+material here should be credited to the lecturer, not to me.
+Feel free to message me with any suggestions or corrections at \href{mailto:dyang5@swarthmore.edu}{dyang5@swarthmore.edu}.
+\end{abstract}
+
+\tableofcontents
+
+\newpage
+
+\section{Introduction to Fermat's Last Theorem}
+
+\begin{theorem}[Fermat's Last Theorem, 1637]
+There are no positive integers $x$, $y$, $z$ that satisfy \[x^n + y^n = z^n\]
+for integer $n > 2$. \\
+
+An equivalent formulation is the one discussed in lecture:
+\[
+    x^n + y^n = z^n
+\] where $n > 2$ is an integer, has no non-trivial solutions $x$, $y$, and $z$ in $\Q, \Z$.
+\end{theorem}
+
+\begin{definition}[Diophantine Problem]
+A \textbf{Diophantine problem} is a polynomial equation solved in $\Z$ and $\Q$. \\
+
+\textit{Fermat's Last Theorem is an example of a Diophantine problem.}
+\end{definition}
+
+\textit{Historically, in 1993, Andrew Wiles published a proof of Fermat's Last Theorem. Later, Wiles and his student Richard Taylor rectified the 1993 proof and published
+the first successful proof. For these efforts, Wiles won the 2016 Abel Prize and
+the 2017 Copley Medal.} \\
+
+With some extra background, we can prove Fermat's Last Theorem for $n = 4$.
+
+\subsection{Parameterization of Pythagorean Triples}
+
+\begin{theorem}[Primitive Pythagorean Triple Generation]
+If $(x, y, z)$ is a \textbf{primitive} pythagorean triple\footnote{if $(x, y, z)$ is a primitive Pythagorean triple, then it follows that $x$, $y$, and $z$ are pairwise primtiive.    
+} ($\nexists \, d$ such that $d \mid x$, $d\mid y$ and $d \mid z$), then $z$ is odd. Furthermore, assuming that
+$x$ is odd and $y$ is even, then there exists coprime $r, s \in \Z$ with such that
+\[ x = r^2 - s^2, \, y = 2rs, \, z = r^2 + s^2. \]
+\end{theorem}
+
+\begin{proof}[Proof Sketch (Theorem 3)]
+Since $y$ is even, we can rewrite $y = 2y_1$ for some integer $y_1$. Since $(x, y, z)$ are a Pythagorean triple, it follows that
+\( y^2 = z^2 - x^2 = (z-x)(z+x). \) Substituting and expanding, we get that 
+\[
+    4y_1^2 = (z-x)(z+x).
+\] 
+Since $x$, $z$ are both odd, we can rewrite $z-x = 2a$ and $z+x =2b$, so 
+\[ y_1^2 = ab\] where $(a, b) = 1$. Consequently, $a$, $b$ must themselves be perfect squares. We conclude that $y_1=rs$, where $r^2 = a$, $s^2=b$, and so it follows that
+$y = 2rs$ for coprime $r$, $s$. 
+\end{proof}
+
+\end{document}
