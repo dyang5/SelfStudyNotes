@@ -14,7 +14,7 @@ These notes arise from lecture videos of Math 356: Number Theory (Quadratic Form
 Professor \href{https://sites.math.rutgers.edu/~alexk/}{Alex Kontorovich}, at Rutgers University. I am grateful
 to Professor Kontorovich for releasing the \href{https://www.youtube.com/playlist?list=PLs6rMe3K87LEwc77iVba5AsAUPC1qVowy}{lecture videos} online. 
 I am responsible for all faults in this document, mathematical or otherwise; any merits of the
-material here should be credited to the lecturer, not to me.
+material here should be credited to Professor Kontorovich and not to me.
 Feel free to message me with any suggestions or corrections at \href{mailto:dyang5@swarthmore.edu}{dyang5@swarthmore.edu}.
 \end{abstract}
 
@@ -66,4 +66,39 @@ Since $x$, $z$ are both odd, we can rewrite $z-x = 2a$ and $z+x =2b$, so
 $y = 2rs$ for coprime $r$, $s$. 
 \end{proof}
 
+\subsection{Pythagorean Varieties}
+
+\begin{definition}[Variety]
+A \textbf{variety} is a set of solutions to a system of polynomial equations.
+\end{definition}
+
+Consider the variety $\mathcal{V}: x^2 + y^2 - z^2$, which is a Pythagorean variety. Note that
+$\mathcal{V}(\R)$ is a structure consisting of two cones which are reflections about the $z$-axis,
+and $ \mathcal{V}(\Z)$, $\mathcal{V}(\Q)$ are subsets of $\mathcal{V} (\R)$.
+
+\begin{lemma*}
+For every $\vec{v} \in \mathcal{V}(\Q)$, there exists a unique primitive $\vec{w} \in \mathcal{V}(\Z)_+^{0}$ with $\vec{w} \sim \vec{v}$, where
+$\vec{u} \sim \vec{v} \iff \vec{u} = \lambda\vec{v}, \, \lambda \in \R \setminus \{ 0\}$.
+\end{lemma*}
+
+Note that $\mathcal{V}(\R)_+ / \sim$ can be thought of as $S^1$; for a point
+$(x, y, z) \in \mathcal{V} (\R)_+ \mapsto \left( \frac{x}{z}, \frac{y}{z}, 1 \right)$. Furthermore, $\mathcal{V}(\R) / \sim = S^1 \cup \{0\}.$ \\
+
+Furthermore, note that another set of representatives of $\mathcal{V} (\Q)_+ / \sim$ is $S^1(\Q)$. This gives a notion for why Pythagorean triples are fundamental:
+they parameterize rational points on the unit circle. Formally, 
+\[
+    \left( \frac{r}{u}, \frac{t}{u} \right) \in S^1(\Q) \iff (r, t, u) \in \mathcal{V} (\Z)_+^{0} 
+\]
+
+\subsection{Proof of Fermat's Last Theorem for $n=4$}
+
+\textbf{Statement.} $x^4 + y^4 = z^4$ in $\Z$ implies $xyz = 0$. \\
+\textbf{Stronger Statement.} $x^4 + y^4 = z^2$ in $\Z$ implies $xyz = 0$.
+\begin{proof}
+Note that if $x^4 + y^4 - z^2 = 0$, then $(x^2, y^2, z^2) \in \mathcal{V}(\Z)_+^0$, a primitive Pythagorean triple. By the Parameterization
+of primitive Pythagorean triples, there exists $r, s \in \Z$ such that 
+\[
+  x^2 = r^2 - s^2, \, y^2 = 2rs, \, z = r^2 + s^2.  
+\]
+\end{proof}
 \end{document}
