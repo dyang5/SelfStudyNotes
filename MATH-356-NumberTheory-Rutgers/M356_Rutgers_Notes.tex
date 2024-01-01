@@ -95,10 +95,47 @@ they parameterize rational points on the unit circle. Formally,
 \textbf{Statement.} $x^4 + y^4 = z^4$ in $\Z$ implies $xyz = 0$. \\
 \textbf{Stronger Statement.} $x^4 + y^4 = z^2$ in $\Z$ implies $xyz = 0$.
 \begin{proof}
-Note that if $x^4 + y^4 - z^2 = 0$, then $(x^2, y^2, z^2) \in \mathcal{V}(\Z)_+^0$, a primitive Pythagorean triple. By the Parameterization
-of primitive Pythagorean triples, there exists $r, s \in \Z$ such that 
+Suppose there is a solution to $x^4 + y^4 = z^2$ in $\Z$ with $xyz \neq 0$. Then $(x^2, y^2, z)$ is a Pythagorean triple. Furthermore, since we can scale Pythagorean triples by their GCD to get a primitive triple, we can assume that 
+$(x^2, y^2, z) \in \mathcal{V}(\Z)_+^0$ is rather a primitive Pythagorean triple. By the Parameterization
+of primitive Pythagorean triples, there exists coprime $r, s \in \Z$ such that 
 \[
   x^2 = r^2 - s^2, \, y^2 = 2rs, \, z = r^2 + s^2.  
 \]
-\end{proof}
+
+Furthermore, since $x^2$ is odd and $y^2$ is even by assumption, $r$ and $s$ also have opposite parity. From the first equation, we know that 
+\[
+    x^2 + s^2 = r^2,
+\] where $x$ is odd, forcing $s$ to be even, and $r$ to be odd. Once again, $(x, s, r)$ is a primitive Pythagorean triple, so there exists coprime $u$, $v \in \Z$ such that
+\[ 
+    x = u^2 - v^2, \, s = 2uv, \, r = u^2 + v^2 
+\]
+where $(r, s) = 1$. We also know that $y^2 = 2rs$ from our first primitive Pythagorean triple $(x^2, y^2, z)$. Since $y$ is even, we can express it as $y=2y_1$ for some $y_1 \in \Z$. 
+Since $r = u^2 + v^2$, $s = 2uv$, and $y=2y_1$, we have that
+\[
+    4y_1^2 = 2(u^2 + v^2)(2uv)
+\]
+    
+and so 
+\[
+    y_1^2 = uv(u^2 + v^2).    
+\]
+
+Note however that $(u, v) = 1$. Consequently, $u$, $v$, and $u^2 + v^2$ are three pairwise coprime numbers whose product is a perfect square. Thus, $u$, $v$, and $u^2 + v^2$ must themselves be a perfect square.
+We now write 
+\[
+    u = a^2, \, v = b^2, \, u^2 + v^2 = c^2
+\]
+
+From the third equation, we have that $a^4 + b^4 = c^2$. \\
+
+Note that if $xyz \neq 0$, then
+\[ c \leq c^2 = u^2 + v^2 \leq (u^2 + v^2)^2 = r^2 < r^2 + s^2 = z. \]
+
+Thus, we have found a smaller, in the sense that $c < z$, primitive solution to $x^4 + y^4 = z^2$ with $abc \neq 0$. \\
+
+We can continue this process of finding primitive solutions until we arive at a trivial solution. Thus, by the principle of infinite descent\footnote{or Fermat's descent}, we conclude
+that $x^4 + y^4 = z^2$ in $\Z$ implies $xyz = 0$. \end{proof}
+
+
+
 \end{document}
