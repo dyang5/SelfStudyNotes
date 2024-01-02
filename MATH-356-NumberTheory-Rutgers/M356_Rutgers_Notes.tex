@@ -136,6 +136,34 @@ Thus, we have found a smaller, in the sense that $c < z$, primitive solution to 
 We can continue this process of finding primitive solutions until we arive at a trivial solution. Thus, by the principle of infinite descent\footnote{or Fermat's descent}, we conclude
 that $x^4 + y^4 = z^2$ in $\Z$ implies $xyz = 0$. \end{proof}
 
+\newpage
 
+\section{Modular Arithmetic}
 
+\textit{Note: Basic modular arithmetic notes skipped due to prior knowledge. Important theorems/results added for completeness.}
+
+\begin{theorem}[Fermat's Little Theorem]
+If $p$ is a prime with $p \nmid a$, 
+\[
+    a^{p-1} \equiv 1 \pmod p.
+\]
+\end{theorem}
+
+\begin{proof}
+Note that $\{ 1\cdot a, 2\cdot a, \dots, (p-1)\cdot a, p\cdot a\}$
+is a complete residue system modulo $p$. It follows that
+\[
+    (1\cdot a)(2\cdot a) \dots ((p-1) \cdot a) \equiv 1\cdot 2\cdot 3 \dots (p-1) \pmod p.
+\]
+
+Simplifying, we have that
+\[
+    (p-1)! a^{p-1} \equiv (p-1) \pmod p.
+\]
+
+Equivalently, we have that $p \mid (p-1)! \left( a^{p-1} - 1 \right).$ Since $p \nmid (p-1)!$, it follows that $p \mid a^{p-1} - 1$, so 
+\[
+    a^{p-1} \equiv 1 \pmod p. \qedhere
+\]
+\end{proof}
 \end{document}
