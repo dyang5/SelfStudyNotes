@@ -167,7 +167,7 @@ Equivalently, we have that $p \mid (p-1)! \left( a^{p-1} - 1 \right).$ Since $p 
 \]
 \end{proof}
 
-\subsection{Linear Diophantine Equations}
+\subsection{Linear Diophantine Equations (and Euclidean Algorithm)}
 Let $S = \{  an + bm \mid n, m \in \Z \}$\dots
 \begin{theorem}
 $S = d\Z$, where $d = \mathrm{gcd}(n, m).$  
@@ -177,4 +177,37 @@ $S = d\Z$, where $d = \mathrm{gcd}(n, m).$
 First, note that $S \subseteq d\Z$. If $d \mid n$ and $d \mid m$, then $d \mid an$ and $d \mid bm$, so $d \mid an + bm$. 
 It remains to show that $an + bm = d$ has a solution. It is possible to find such a solution by reversing the steps of the Euclidean Algorithm using $n$ and $m$.
 \end{proof}
+
+\begin{theorem}[Euclidean Algorithm]
+The \textbf{Euclidean Algorithm} can be used to find the GCD of two integers $n > m > 0$ as follows:
+\begin{itemize}
+    \item Apply the `division' algorithm to rewrite $n = m \cdot q_1 + r_1$, where $0 \leq r_1 < m$.\footnote{for reference, we can express $n$ as $r_{-1}$ and $m$ as $r_0$.}
+    \item Continue this process, finding $q_j, r_j$ such that $r_{j-2} = r_{j-1} q_j + r_j$, with $0 \leq r_j < r_{j-1}$.
+    \item Stop at some finite $J \leq m$ with $r_J = 0$.
+\end{itemize}
+
+It follows that $r_{J-1} = \mathrm{gcd}(n, m).$ 
+\end{theorem}
+
+\begin{proof}
+First, let's show that $\mathrm{gcd}(n, m) \mid r_{J-1}.$ Note that if $l \mid n$ and $l \mid n$, $l \mid n - mq_1$, so $l \mid r_1$. Similarly, if 
+$l \mid r_{j-2}$ and $l \mid r_{j-1}$, then $l \mid r_{j-2} - r_{j-1}q_j$, so $l \mid r_j$. Thus, it follows, that $l \mid r_{J-1},$ and so $\mathrm{gcd}(n, m) \mid r_{J-1}.$ \\
+
+It remains to show that $r_{J-1} \mid \mathrm{gcd}(n, m)$. Note that
+$r_{J-2} = r_{J-1}q_{J} + r_J$, and $r_J = 0$. It follows that $r_{J-1} \mid r_{J-2}$. Following our steps backwards, 
+we will find that $r_{J-1} \mid r_j$ for all $j \in [-1, J-2].$ 
+Recall that $r_0 = m$ and $r_{-1} = n$. Consequently, since $r_{J-1} \mid r_j$ for all $j$, we have that $r_{J-1} \mid n$ and $r_{J-1} \mid m$, so $r_{J-1} \mid \mathrm{gcd}(n, m).$ \\
+
+Since $\mathrm{gcd}(n, m) \mid r_{J-1}$ and $r_{J-1} \mid \mathrm{gcd}(n, m)$, it follows that $r_{J-1} = \mathrm{gcd}(n, m)$, as desired. 
+\end{proof}
+
+\subsection{Connections to Algebra}
+When we studied Linear Diophantine Equations, we looked at sets $S = \{ xn + ym \mid x, y \in \Z \}.$ Such a set $S$ is an example of an ideal.
+\begin{definition}[Ideals]
+An \textbf{ideal} of the ring $\Z$ satisfies
+\begin{itemize}
+    \item For $z \in S$, $rz \in S$ for all $r \in \Z$.
+    \item For $z_1, z_2 \in S$, $z_1 \pm z_2 \in S$.
+\end{itemize}
+\end{definition} 
 \end{document}
