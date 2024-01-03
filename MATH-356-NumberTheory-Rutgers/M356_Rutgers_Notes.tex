@@ -166,4 +166,15 @@ Equivalently, we have that $p \mid (p-1)! \left( a^{p-1} - 1 \right).$ Since $p 
     a^{p-1} \equiv 1 \pmod p. \qedhere
 \]
 \end{proof}
+
+\subsection{Linear Diophantine Equations}
+Let $S = \{  an + bm \mid n, m \in \Z \}$\dots
+\begin{theorem}
+$S = d\Z$, where $d = \mathrm{gcd}(n, m).$  
+\end{theorem}
+
+\begin{proof}
+First, note that $S \subseteq d\Z$. If $d \mid n$ and $d \mid m$, then $d \mid an$ and $d \mid bm$, so $d \mid an + bm$. 
+It remains to show that $an + bm = d$ has a solution. It is possible to find such a solution by reversing the steps of the Euclidean Algorithm using $n$ and $m$.
+\end{proof}
 \end{document}
