@@ -210,4 +210,49 @@ An \textbf{ideal} of the ring $\Z$ satisfies
     \item For $z_1, z_2 \in S$, $z_1 \pm z_2 \in S$.
 \end{itemize}
 \end{definition} 
+
+\begin{definition}
+An ideal $S$ of the ring $\Z$ is \textbf{principal} if $\exists \, d \in \Z$ such that
+\[ S = (d) = \{ d \cdot r \mid r \in \Z \} = d\Z. \]     
+\end{definition}
+
+\begin{theorem}
+$\Z$ is a \textbf{Principal Ideal Domain} (every ideal is principal). \\
+
+Equivalently, suppose that $S = (n_1, \dots, n_k)$ is an ideal. Then $\exists \, d \in \Z$ such that $S = (d)$.\footnote{in fact, $d = \mathrm{gcd}(n_1, \dots, n_k)$. }
+\end{theorem}
+
+\begin{proof}
+Suppose that $S = (n_1, \dots, n_k).$ If $l \mid n_1, \dots, l \mid n_k$, then for all $z \in S, l \mid z$. 
+Thus, $d = \mathrm{gcd}(n_1, \dots, n_k) \mid z$ for all $z \in S$, so $S \subseteq d\Z$. \\
+
+It remains to show that $d = \mathrm{gcd}(n_1, \dots, n_k) \in S.$ Let $r$ be the smallest positive element in $S$. Clearly, $r\Z \subseteq S$. 
+It follows, by the Euclidean Algorithm that $d \mid r$, so $d = r$. Thus, $d\Z \subseteq S$.
+\end{proof}
+
+\begin{definition}[(Loose Definitions of) Groups, Rings, and Fields]
+A \textbf{group} is a set $S$ with an operation $+$, $0$, and inverses. \\
+
+A \textbf{ring} is a set $S$ with operations $+, \times$ that supports addition, subtraction, and multiplication. \\
+
+A \textbf{field} is a set $S$ with operations $+, \times$ that supports addition, subtraction, multiplication, and divison\footnote{for all $x \in S \setminus \{0\}$, $\exists \, y \in S$ with $xy = 1$.}
+\end{definition}
+
+\begin{theorem}
+($\Z / n\Z, +, \times$) is a field if and only if $n$ is prime.
+\end{theorem}
+
+\begin{proof}
+For prime $p$ and $a \not\equiv 0 \pmod p$, $a^{p-1} \equiv 1 \pmod p$ by Fermat's Little Theorem, so $a^{p-2} = \overline{a}$, the modular inverse of $a \pmod p.$ Consequently, we have
+found an explicit inverse for each $a \not\equiv 0 \pmod p$. \\
+
+On the other hand, suppose that $n$ is not prime and let $a \in \Z / n\Z$ with $a \not\equiv 0 \pmod n$ and $\mathrm{gcd}(a, n) > 1$. Then $ab + nm = 1$ has no solutions, so $ab \equiv 1 \pmod n$ has no solutions $b$.  
+\end{proof}
+
+\begin{definition}[Units]
+The units of $\Z / n\Z$, expressed as $(\Z / n\Z)^{\times}$, is
+\[
+    (\Z / n\Z)^{\times} = \{ a \pmod{n} \mid \exists \,b : ab = 1 \}.
+\]
+\end{definition}
 \end{document}
