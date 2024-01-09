@@ -7,6 +7,7 @@
 \usepackage[usenames,dvipsnames]{xcolor}
 \setlength\parindent{0pt}
 \usepackage[colorlinks=true,linkcolor=blue,urlcolor=magenta,citecolor=violet]{hyperref}
+\usepackage[capitalize,nameinlink]{cleveref}
 \usepackage{thmtools}
 \usepackage[framemethod=TikZ]{mdframed}
 \hypersetup{
@@ -15,6 +16,7 @@
    pdfborder={1 1 1},
    pdfborderstyle={/S/U/W 1}   
 }
+
 \newcommand{\nc}{\newcommand}
 \nc{\nt}{\newtheorem}
 \nc{\on}{\operatorname}
@@ -99,11 +101,14 @@ skipabove=8pt,
 
 \theoremstyle{definition}
 \declaretheorem[style=thmbluebox,name=Theorem]{theorem}
+\declaretheorem[style=thmredbox,name=Lemma,numbered=no]{lemma}
+\declaretheorem[style=thmredbox,name=Corollary]{corollary}
+
 \declaretheorem[style=thmgreenbox,name=Proposition,sibling=theorem]{proposition}
 \declaretheorem[style=thmbluebox,name=Definition,sibling=theorem]{definition}
 \declaretheorem[style=thmbluebox,name=Theorem,numbered=no]{theorem*}
 \declaretheorem[style=thmredbox,name=Lemma,numbered=no]{lemma*}
-\declaretheorem[style=thmredbox,name=Exercise]{exercise*}
+\declaretheorem[style=thmredbox,name=Exercise]{exercise}
 \declaretheorem[style=thmredbox,name=Discussion,numbered=no]{discussion*}
 \declaretheorem[style=thmbluebox,name=Proposition,numbered=no]{proposition*}
 \declaretheorem[style=thmgreenbox,name=Solution]{solution*}
