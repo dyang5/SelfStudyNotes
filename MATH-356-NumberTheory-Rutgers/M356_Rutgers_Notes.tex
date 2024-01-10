@@ -403,7 +403,101 @@ studied the question of which numbers appear as the hypotenuses of triples.\foot
 Note that this is also equivalent to finding possible norms of Gaussian integers; for example, circles centered at $(0, 0)$ with radius $\sqrt{n}$ for $n \equiv 3 \pmod 4$ pass through no lattice points.
 In general, we may also want to study which $n$ arise as the values of a general binary quadratic form $Ax^2 + Bxy + Cy^2$.
 
+\begin{definition}[Irreducible]
+An element $r$ in the ring $R$ is irreducible if, for an element $b$ in $R$, 
+\[
+    b \mid r \text{ implies that } b \text { is a unit or an associate to } r.
+\]
+\end{definition}
 
+\begin{definition}[Associates]
+Two elements $r$ and $s$ in the ring $R$ are \textbf{associates} if there exists an element $u$ in the set of non-units of $R$, $R^{\times}$, such that
+\[
+    r = us.
+\]
+\end{definition}
 
+\begin{definition}[Prime]
+An element $r$ in the ring $R$ is \textbf{prime} if 
+\[
+    r \mid s \cdot t \text{ implies } r \mid s \text{ or } r \mid t.
+\]
+\end{definition}
 
+% \begin{remark} 
+% In $R = \Z[\sqrt{5}]$, $2$ is irreducible but is not prime.
+% \end{remark}
+
+\begin{exercise}
+$R^{\times}$ is a group.    
+\end{exercise}
+
+\subsection{Quadratic Residues and Nonresidues}
+
+Recall that we studied the question of which numbers are represented as sums of squares. 
+From our modular arithmetic section, we know that no prime $p \equiv 3 \pmod 4$ can be expressed as a sum of squares.
+
+\begin{lemma}
+Every prime $p \equiv 1 \pmod 4$ is a sum of two squares.
+\end{lemma}
+
+\begin{lemma}[Quadratic Residues modulo $p$]
+Modulo any prime $p$, half of the numbers (excluding $0$) are quadratic residues. \\
+
+Equivalently, the number of numbers $n \equiv \pmod p$ where
+$n \neq 0$ and there exists some $x$ such that $x^2 \equiv n \pmod p$ is $\frac{p-1}{2}.$
+\end{lemma}
+
+\begin{proof}
+Note that $(x)^2 \equiv (-x)^2 \pmod p$. It follows that there must be at most half the numbers among the squares. \\
+
+Furthermore, note that if $x^2 \equiv y^2 \pmod p$, then $p \mid x^2 - y^2$, so $p \mid (x-y)(x+y)$. By \cref{cor:prime_div_rule}, it follows that
+$p \mid x-y$ or $p \mid x+y$, meaning $x \equiv y \pmod p$ or $x \equiv -y \pmod p$. Thus, all squares in the first half are distinct and there are exactly
+$\frac{p-1}{2}$ quadratic residues modulo $p$.
+\end{proof}
+
+% \begin{remark}
+% $a^{\frac{p-1}{2}} = 1 \pmod p \iff a$ is a quadratic residue.
+% \end{remark}
+
+We can now find a procedure to write a prime $p \equiv 1 \pmod 4$ as a sum of two squares.
+\begin{itemize}
+    \item Find quadratic non-residue $a$ modulo $p$.
+    \item Let $z = a^{\frac{p-1}{4}} \pmod p.$ It follows that 
+    \[
+        z^2 = a^{\frac{p-1}{2}} \equiv -1 \pmod p,
+    \]
+    so $z^2 + 1 \equiv 0 \pmod p$, and $z^2 + 1 = pk$ in the integers.
+    \item In $\Z[i]$, $z^2 + 1 = (z+i)(z-i)$, so $(z+i)(z-i) = pk.$
+    \item To find the common factor, apply the Euclidean algorithm to $z+i$ and $p$ in $\Z[i]$.
+\end{itemize}
+
+Put more succinctly, this procedure has two steps:
+\begin{itemize}
+    \item Find quadratic non-residue $a$ modulo $p$.
+    \item Let $z = a^{\frac{p-1}{4}} \pmod p.$ Find $\mathrm{gcd}(z+i, p)$ in $\Z[i]$. 
+\end{itemize} 
+
+\begin{eg}
+Let $p = 17$. Then $a = 3$ is a quadratic non-residue modulo $p$, and $z = 3^{\frac{17-1}{4}} \pmod{17} = 13.$ Note that $13^2 + 1^2 = 170 = 17 \cdot 10.$ \\
+
+We apply the Euclidean Algorithm to $13+i$ and $17$ in $\Z[i]$:
+\begin{align*}
+    17 = (13+i) \cdot 1 + (4-i)
+    13+i = (4-i) \cdot (3+i) + 0
+\end{align*}
+
+so $\mathrm{gcd}(13+i, 17) = 4-i$. \\
+
+Thus, $17 = (4+i)(4-i) = \boxed{4^2 + 1^2}.$
+\end{eg}
+
+\begin{eg}[Super Large Example, all calculations computed using WolframAlpha]
+Take $p = 55, 497, 159, 953$. Let $a = 21, 345$ (randomly picked quadratic non-residue), so that $a^{\frac{p-1}{2}} \equiv -1 \pmod p$. \\
+
+Let $z = a^{\frac{p-1}{4}} = 4,334,787,849.$ Since $\mathrm{gcd}(z+i, p) = 235,532 + 4673i$, we conclude that
+\[
+    p = 235,532^2 + 4,673^2.
+\] 
+\end{eg}
 \end{document}
