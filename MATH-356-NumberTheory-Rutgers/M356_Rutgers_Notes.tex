@@ -424,9 +424,9 @@ An element $r$ in the ring $R$ is \textbf{prime} if
 \]
 \end{definition}
 
-% \begin{remark} 
-% In $R = \Z[\sqrt{5}]$, $2$ is irreducible but is not prime.
-% \end{remark}
+\begin{remark} 
+In $R = \Z[\sqrt{5}]$, $2$ is irreducible but is not prime.
+\end{remark}
 
 \begin{exercise}
 $R^{\times}$ is a group.    
@@ -456,9 +456,9 @@ $p \mid x-y$ or $p \mid x+y$, meaning $x \equiv y \pmod p$ or $x \equiv -y \pmod
 $\frac{p-1}{2}$ quadratic residues modulo $p$.
 \end{proof}
 
-% \begin{remark}
-% $a^{\frac{p-1}{2}} = 1 \pmod p \iff a$ is a quadratic residue.
-% \end{remark}
+\begin{remark}
+$a^{\frac{p-1}{2}} = 1 \pmod p \iff a$ is a quadratic residue.
+\end{remark}
 
 We can now find a procedure to write a prime $p \equiv 1 \pmod 4$ as a sum of two squares.
 \begin{itemize}
@@ -500,4 +500,42 @@ Let $z = a^{\frac{p-1}{4}} = 4,334,787,849.$ Since $\mathrm{gcd}(z+i, p) = 235,5
     p = 235,532^2 + 4,673^2.
 \] 
 \end{eg}
+
+\subsection{Eisenstein Integers}
+
+\begin{definition}
+For $\omega = e^{\frac{2\pi i}{3}},$ the ring $\Z[\omega]$ consists of the \textbf{Eisenstein Integers}:
+\[
+    \Z[\omega] = \{ a_0 + a_1 \omega \mid a_0, a_1 \in \Z \}.
+\] 
+
+Since $\omega$ satisfies $\omega^2 + \omega + 1 = 0$, $\omega^2 = -\omega - 1$, so $\Z[\omega] = \Z[x] / (x^2 + x + 1).$
+\end{definition}
+
+\begin{remark}
+The Eisenstein integers form a triangular/``hexagonal'' lattice in the complex plane.
+\end{remark}
+
+\begin{exercise}
+What is the ``norm form'' for $\Z[\omega]$? \\
+
+Note that 
+\[
+    \mathcal{N}(a + b\omega) = (a+b\omega)(a+b \overline{\omega}) = a^2 - ab + b^2.
+\]
+\end{exercise}
+
+\begin{definition}
+A ring $R$ is a \textbf{Euclidean Domain} if there is a norm function $\mathcal{N}: R \setminus \{ 0 \} \mapsto \N$
+such that for all $n, m$ in $R$ with $m \neq 0$, there exists $q, r$ in $R$ such that
+\[
+    n = mq + r
+\]
+
+with $\mathcal{N}(r) < \mathcal{N}(m).$
+\end{definition}
+
+\begin{remark}
+The ring $R = \R[x]$ is a Euclidean domain, where the ``norm function'' is the degree of a polynomial.
+\end{remark}
 \end{document}
