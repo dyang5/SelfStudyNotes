@@ -501,7 +501,7 @@ Let $z = a^{\frac{p-1}{4}} = 4,334,787,849.$ Since $\mathrm{gcd}(z+i, p) = 235,5
 \] 
 \end{eg}
 
-\subsection{Eisenstein Integers}
+\subsection{Norm Forms (and Eisenstein Integers)}
 
 \begin{definition}
 For $\omega = e^{\frac{2\pi i}{3}},$ the ring $\Z[\omega]$ consists of the \textbf{Eisenstein Integers}:
@@ -536,6 +536,83 @@ with $\mathcal{N}(r) < \mathcal{N}(m).$
 \end{definition}
 
 \begin{remark}
-The ring $R = \R[x]$ is a Euclidean domain, where the ``norm function'' is the degree of a polynomial.
+The ring $R = \R[x]$ is a Euclidean domain, where the ``norm function'' is the degree of a polynomial.\footnote{we can define $\mathrm{degree}(0) = -\infty$.}
 \end{remark}
+
+\begin{theorem}
+If $R$ is a Euclidean domain, it is a principal ideal domain.
+\end{theorem}
+
+\begin{proof}
+Let $\mathcal{I} $ be an ideal of $R$. Either $\mathcal{I} = (0)$, which is principal, or $\mathcal{I} $ contains some nonzero element $a$.
+Consider the latter case. Let 
+\[
+    S = \{ \mathcal{N}(i) \colon i \in \mathcal{I} \setminus \{ 0 \}  \} \subseteq \N.
+\]
+
+Let $s$ be the least element of $S$ and let $d \in \mathcal{I}$ satisfy $\mathcal{N} (d) = s$. By definition, $(d) \subseteq \mathcal{I}$. 
+We want to show that, in fact, $(d) = \mathcal{I}$. Suppose that there is some nonzero element $m \in \mathcal{I} \setminus (d).$ \\
+
+By the Division Algorithm, there must exist some $q, r$ in $R$ such that $m = dq + r$, and since $m \notin (d)$, $r \neq 0$ and $\mathcal{N} (r) < \mathcal{N} (d)$, which
+contradicts the fact that $d$ has the smallest norm in $S$. Thus, $R$ must be a principal ideal domain.
+\end{proof}
+
+\subsection{Reformulating with Ideals}
+Let's revisit some of our definitions for units, associates, and irreducible elements of a ring $R$ in terms of the ideals.
+
+\begin{definition}
+    \hfill
+    \vspace{-0.75cm}
+    \begin{itemize}
+        \item $a \mid b$ if and only if $(b) \subseteq (a)$.
+        \item $a$ is an \textbf{associate} of $b$ if and only if $(a) = (b)$.
+        \item $u$ is a \textbf{unit of $R$} if and only if $(u) = R$.
+        \item $p$ is a \textbf{prime in $R$} if and only if for $a \cdot b \in (p)$, either $a \in (p)$ or $b \in (p)$.
+        \item $a, b$ in $R$ are \textbf{coprime} for $R$ a PID if and only if $(a, b) = R$.
+        \item $d$ is a \textbf{gcd of $a, b$ in $R$} if and only if $(a) \subseteq  (d)$ and $(b) \subseteq (d)$ and 
+        if $(a) \subseteq (d^{\prime})$ and $b \subseteq (d^{\prime})$, then $(d^{\prime}) \subseteq (d)$.
+    \end{itemize}
+\end{definition}
+
+\begin{lemma}
+If $R$ is a PID, and $a$ and $b$ are two elements in $R$, then there exists a gcd $d$ of $a$ and $b$ such that $(a, b) = (d).$
+\end{lemma}
+
+\begin{proof}
+Note that there is some $d$ such that $(d) = (a, b)$. It remains to show that $d$ is a gcd of $a$ and $b$. Note that $b \in (a, b) \subseteq (d)$. Thus, $b = d\cdot k$, and $d \mid b$. 
+By similar logic, we know $d \mid a$. \\
+
+Suppose that $d^{\prime}  \mid a$ and $d^{\prime} \mid b$. Then $a = d^{\prime} \cdot l$ and $b = d^{\prime} \cdot k$, so $a \in (d^{\prime})$ and $b \in (d^{\prime}).$
+It follows that $(d) = (a, b) \subseteq (d^{\prime})$, so $d \in (d^{\prime}).$ Thus, $d = d^{\prime} \cdot r$ and $d^{\prime} \mid d$.
+Thus, $d$ is the gcd of $a$ and $b$ as desired.
+\end{proof}
+
+\begin{definition}[Noetherian Ring]
+A ring $R$ is \textbf{Noetherian}\footnote{named after Emily Noether} if 
+\[
+    \mathcal{I}_1 \subseteq \mathcal{I}_2 \subseteq  \dots
+\]
+
+is a chain of ideals, then the chain stops in finite time (there exists $N$ such that for all $n > N$, $I_N=I_n$).
+\end{definition}
+
+\begin{remark}
+$\Z$ is Noetherian (which also follows from the theorem below, as $\Z$ is a PID.)
+\end{remark}
+
+\begin{theorem}
+If $R$ is a PID, then it is Noetherian.
+\end{theorem}
+
+\begin{proof}
+Let $\mathcal{I}_1 \subseteq \mathcal{I}_2 \subseteq  \dots$ be an increasing chain of ideals. Let
+\[
+    \mathcal{I} = \bigcup_{k=1}^{\infty} \mathcal{I}_k.
+\]
+
+$\mathcal{I}$ is an ideal, and since $R$ is a PID, it follows that $\mathcal{I} = (a)$ for some $a$. 
+There must exist a $N$ such that $a \in \mathcal{I}_N$, so $(a) \subseteq \mathcal{I}_N$. 
+Since for any $n > N$, $\mathcal{I}_n \subseteq \mathcal{I}_N$, it follows that $R$ is Noetherian.
+
+\end{proof}
 \end{document}
