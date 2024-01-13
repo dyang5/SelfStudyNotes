@@ -425,12 +425,18 @@ An element $r$ in the ring $R$ is \textbf{prime} if
 \end{definition}
 
 \begin{remark} 
-In $R = \Z[\sqrt{5}]$, $2$ is irreducible but is not prime.
+In $R = \Z[\sqrt{5}]$, $2$ is irreducible but is not prime. \\
+
+On the other hand, an element $p$ that is prime is also irreducible.
 \end{remark}
 
 \begin{exercise}
 $R^{\times}$ is a group.    
 \end{exercise}
+
+\begin{remark}
+If $R$ is a PID, then an element is irreducible if and only if it is prime.
+\end{remark}
 
 \subsection{Quadratic Residues and Nonresidues}
 
@@ -536,7 +542,16 @@ with $\mathcal{N}(r) < \mathcal{N}(m).$
 \end{definition}
 
 \begin{remark}
-The ring $R = \R[x]$ is a Euclidean domain, where the ``norm function'' is the degree of a polynomial.\footnote{we can define $\mathrm{degree}(0) = -\infty$.}
+The ring $R = \R[x]$ is a Euclidean domain, where the ``norm function'' is the degree of a polynomial.\footnote{we can define $\mathrm{degree}(0) = -\infty$.} \\
+
+On the other hand, $R = \Z[\sqrt{-5}]$ is not a Euclidean domain, since the division algorithm does not work:    \begin{quote}
+    if $q = \lfloor \frac{n}{m} \rfloor,$ then 
+    \[
+        |r|^2 = |n - mq|^2 = \left| \left( \frac{n}{m} - q \right) \right|^2 |m|^2.
+    \]
+
+    However, note that $\left| \left( \frac{n}{m} - q \right) \right|^2 < \frac{3}{2}$, and so we can't conclude that $\mathcal{N}(r) < \mathcal{N}(m)$.
+    \end{quote}
 \end{remark}
 
 \begin{theorem}
@@ -612,7 +627,19 @@ Let $\mathcal{I}_1 \subseteq \mathcal{I}_2 \subseteq  \dots$ be an increasing ch
 
 $\mathcal{I}$ is an ideal, and since $R$ is a PID, it follows that $\mathcal{I} = (a)$ for some $a$. 
 There must exist a $N$ such that $a \in \mathcal{I}_N$, so $(a) \subseteq \mathcal{I}_N$. 
-Since for any $n > N$, $\mathcal{I}_n \subseteq \mathcal{I}_N$, it follows that $R$ is Noetherian.
-
+Since for any $n > N$, $\mathcal{I}_n \subseteq \mathcal{I}_N$, it follows that $R$ is Noetherian. 
 \end{proof}
+
+\begin{theorem}
+Noehterian rings are a UFD.
+\end{theorem}
+
+\begin{remark}
+Note that Euclidean Domains imply PID which imply Noetherian ring which imply UFD. \\
+
+Recall from earlier that $\Z[\sqrt{-5}]$ is not Euclidean; this also follows from the fact that it is not a UFD: 
+\[
+    6 = 2 \cdot 3 = (1+\sqrt{-5})(1-\sqrt{-5}).
+\]
+\end{remark}
 \end{document}
