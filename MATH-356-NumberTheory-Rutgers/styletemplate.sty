@@ -117,6 +117,8 @@ skipabove=8pt,
 \declaretheorem[style=thmgreenbox,name=Extension,numbered=no]{extension*}
 \declaretheorem[style=thmbluebox, numbered=no, name=Example]{eg}
 \declaretheorem[style=thmbluebox, numbered=no, name=Remark]{remark}
+\declaretheorem[style=thmanswerbox, numbered=no, name=Answer]{tmpanswer}
+\newenvironment{answer}[1][]{\vspace{-10pt}\pushQED{\(\circledast\)}\begin{tmpanswer}}{\null\hfill\popQED\end{tmpanswer}}
 
 \declaretheorem[style=thmproofbox, name=Proof]{thmproof}
 

@@ -582,6 +582,7 @@ Let's revisit some of our definitions for units, associates, and irreducible ele
         \item $a \mid b$ if and only if $(b) \subseteq (a)$.
         \item $a$ is an \textbf{associate} of $b$ if and only if $(a) = (b)$.
         \item $u$ is a \textbf{unit of $R$} if and only if $(u) = R$.
+        \item $r$ is \textbf{irreducible in $R$} if $r = s \cdot t$ for $s, t$ in $R$ implies $s$ is a unit of $(s) = (r)$.
         \item $p$ is a \textbf{prime in $R$} if and only if for $a \cdot b \in (p)$, either $a \in (p)$ or $b \in (p)$.
         \item $a, b$ in $R$ are \textbf{coprime} for $R$ a PID if and only if $(a, b) = R$.
         \item $d$ is a \textbf{gcd of $a, b$ in $R$} if and only if $(a) \subseteq  (d)$ and $(b) \subseteq (d)$ and 
@@ -602,6 +603,22 @@ It follows that $(d) = (a, b) \subseteq (d^{\prime})$, so $d \in (d^{\prime}).$ 
 Thus, $d$ is the gcd of $a$ and $b$ as desired.
 \end{proof}
 
+\begin{exercise}
+Is $x^2 + 1$ irreducible in $R = (\Z / 5)[x]$? How about in $R = (\Z / 7)[x]$?
+\end{exercise}
+
+\begin{answer}
+$x^2 + 1$ is not irreducible in $(\Z / 5)[x]$, as 
+\[
+    (x+2)(x+3) = x^2 + 5x + 6 \equiv x^2 + 1 \pmod 5.
+\]
+
+Note that this is equivalent to the question of whether there exists a solution $x$ to $x^2 \equiv -1 \pmod 5$. 
+In general, recall that $x^2 + y^2 \equiv 0 \pmod p$ has a solution if and only if $p \equiv 1 \pmod 4$ or $p=2$. \\
+
+Thus, since $7 \equiv 3 \pmod 4$, $x^2 + 1$ is irreducible in $R = (\Z / 7)[x]$.
+\end{answer}
+
 \begin{definition}[Noetherian Ring]
 A ring $R$ is \textbf{Noetherian}\footnote{named after Emily Noether} if 
 \[
@@ -620,18 +637,81 @@ If $R$ is a PID, then it is Noetherian.
 \end{theorem}
 
 \begin{proof}
-Let $\mathcal{I}_1 \subseteq \mathcal{I}_2 \subseteq  \dots$ be an increasing chain of ideals. Let
+Let $\mathcal{I}_1 \subseteq \mathcal{I}_2 \subseteq  \dots$ be an increasing chain of ideals in $R$. Let
 \[
     \mathcal{I} = \bigcup_{k=1}^{\infty} \mathcal{I}_k.
 \]
 
 $\mathcal{I}$ is an ideal, and since $R$ is a PID, it follows that $\mathcal{I} = (a)$ for some $a$. 
 There must exist a $N$ such that $a \in \mathcal{I}_N$, so $(a) \subseteq \mathcal{I}_N$. 
-Since for any $n > N$, $\mathcal{I}_n \subseteq \mathcal{I}_N$, it follows that $R$ is Noetherian. 
+Since for any $n > N$, $\mathcal{I}_n \subseteq \mathcal{I}_N$, and they can't add any additional elements to $\mathcal{I}_N$, all $\mathcal{I}_n = \mathcal{I}_N$. 
+It follows that $R$ is Noetherian. 
 \end{proof}
 
-\begin{theorem}
-Noehterian rings are a UFD.
+\begin{lemma}
+If $R$ is Noetherian, then any element $r$ in $R$ is a finite product of irreducibles.
+\end{lemma}
+
+\begin{proof}
+If $r$ is not irreducible, then there exists an element $r_1$ in $R$ such that $r_1 \mid r$, $r_1$ is not a unit, $(r_1) \neq (r)$, and $(r) \subset (r_1)$. \\
+
+If $r_1$ is itself not irreducible, then there exists some $r_2$ such that $r_2 \mid r_1$, $r_2$ is not a unit, $(r_2) \neq (r_1)$, and $(r_1) \subset (r_2)$. \\
+
+Continuing this process, we arrive at an increasing chain of ideals:
+\[
+    (r) \subsetneq (r_1) \subsetneq (r_2) \dots
+\]
+
+Since $R$ is Noetherian, this process cannot go on forever. Suppose that it stops at $r_j$; this means that $l_1 = r_j$ is an irreducible factor of $r$. \\
+
+We can continue this process on $s_1$, where $r = l_1 \cdot s_1$; we will find that there exist some $l_2$, an irreducible factor of $s_1$ and consequently, of $r$. 
+Consider $s_2$, where $s_1 = l_2 \cdot s_2$, and so on and so forth. We once again find an increasing chain of ideals:
+
+\[
+    (r) \subsetneq (s_1) \subsetneq (s_2) \subsetneq \dots
+\]
+
+Since $R$ is Noetherian, this chain must stabilize, giving us an irreducible element $s_J$. It follows that
+\[
+    r = l_1 \cdots l_J \cdot s_J,
+\]
+
+giving us a finite product of irreducible elements.
+\end{proof}
+
+\begin{lemma}
+Let $R$ be a Noetherian ring. Given a prime element $p$ (equivalently, irreducible) in $R$ and an element $a$ in $R$, there exists some natural number $n$ such that 
+$\mathrm{ord}_p(a) = n$. 
+\end{lemma}
+
+\begin{proof}
+If $p \mid a$, then $a = pa_1$. If $p \mid a_1$, then $a_1 = pa_2$, and so on and so forth. We have an increasing chain of ideals
+\[
+    (a) \subseteq (a_1) \subseteq (a_2) \subseteq \dots
+\]    
+
+This process must stop, so there must be some $n$ such that $p^n \mid a$ and $p^{n+1} \nmid a$.
+\end{proof}
+
+\begin{lemma}
+If $R$ is Noetherian and $p$ is prime in $R$, then 
+\[
+    \mathrm{ord}_p(a+b) = \mathrm{ord}_p(a) + \mathrm{ord}_p(b).   
+\]
+\end{lemma}
+
+\begin{proof}
+Same as for $\Z$.
+\end{proof}
+
+
+\begin{theorem}[Noetherian implies UFD]
+Any element $r$ in a Noetherian ring $R$ is uniquely expressed as 
+\[
+    r = u \prod_p p^{e_{p}}
+\]
+
+where $u$ is a unit, $p$ is prime, and $e_p = \mathrm{ord}_p(r).$ 
 \end{theorem}
 
 \begin{remark}
@@ -642,4 +722,6 @@ Recall from earlier that $\Z[\sqrt{-5}]$ is not Euclidean; this also follows fro
     6 = 2 \cdot 3 = (1+\sqrt{-5})(1-\sqrt{-5}).
 \]
 \end{remark}
+
+
 \end{document}
