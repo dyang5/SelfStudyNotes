@@ -736,12 +736,46 @@ Which integers $n$ can be expressed as $n = x^2 - xy + y^2$, for integers $x$ an
 
 \begin{answer}
 We see $n = Q(x, y) \in \{0, 1, 3, 4, 7, 9, 12, 13, \dots\}$, and no values that are $\equiv 2 \pmod 3$! 
-Additionally, for every prime $p \equiv 1 \pmod{3}$, there exists $x, y$ such that $x^2 - xy + y^2 = p$ (i.e. all primes equivalent to 1 $\pmod 3$ are represented.)    
+Additionally, for every prime $p \equiv 1 \pmod{3}$, there exists $x, y$ such that $x^2 - xy + y^2 = p$ (i.e. all primes equivalent to 1 $\pmod 3$ are represented 
+-- and the $x, y$ can be determined efficiently.)    
 \end{answer}
 
 \begin{proof}
-Let $p$ be a prime equivalent to $1 \pmod 3$. Set $z = a^{\frac{p-1}{3}} \pmod{p}$, for $z \not\equiv 1 \pmod{p}$.  
+Let $p$ be a prime equivalent to $1 \pmod 3$. Set $z = a^{\frac{p-1}{3}} \pmod{p}$, for $z \not\equiv 1 \pmod{p}$ (there will be $\frac{2(p-1)}{3}$ possible $z$).\\
+
+It follows by Fermat's Little Theorem that $z^3 - 1 \equiv 0 \pmod p$, so $z^3 - 1 = pk$ for some $k \in \Z$.
+Since $z^3 - 1$ factors completely into $(z-1)(z-\omega)(z-\overline{\omega})$ in $\Z[\omega]$, we know that
+\[
+    (z-1)(z-\omega)(z-\overline{\omega}) = pk
+\]
+in $\Z[\omega]$. Since $z \not\equiv 1 \pmod{p}$, we know that $z - 1 \mid k$. Say that $k = (z-1)l$. Then 
+\[
+    (z-\omega)(z-\overline{\omega}) = pl.
+\]
+
+Note that $p \nmid z-\omega$ and $p \nmid z-\overline{\omega}$.
+\footnote{if $p \mid z-\omega$, then $z-\omega = (c+d\omega)p$, which will only be satisfied if $pd = -1$. A similar line of reasoning
+can be used to show $p \nmid z-\overline{\omega}$.} Since $p \nmid z-\omega$ and $p \nmid z-\overline{\omega}$ but $p \mid (z-\omega)(z+\overline{\omega})$, $p$ is not prime. 
+Suppose that $p = (x+y\omega)(x+y\overline{\omega}) = x^2 - xy + y^2$. It follows that the component $x + y\omega$ must divide at least one of $z-\omega$ or $z-\overline{\omega}$. \\
+
+Take the greatest common divisor, of $p$ and $z - \omega$ in $\Z[\omega]$; if this is $a + b\omega$, it follows that
+\[
+    p = a^2 - ab + b^2
+\]
+
+for integers $a, b$.
 \end{proof}
+
+In the above proof, we actually find an algorithm to solve $p = \mathcal{N}(x+y\omega) = x^2 - xy + y^2$ for $p \equiv 1 \pmod 3$.
+\begin{itemize}
+    \item In $\Z /p$, find an $a$ such that $a^{\frac{p-1}{3}} \not\equiv 1$ and set $z = a^{\frac{p-1}{3}} \pmod p$.
+    \item Find $\mathrm{gcd}_{\Z[\omega]}(p, z-\omega) = x+y\omega$. Then $x^2 - xy + y^2 = p$. 
+\end{itemize}
+
+\begin{remark}
+    Furthermore, for general $n = p_1 \cdots p_k$, where each $p_j$ for $j$ from $1$ to $k$ is $\equiv 1 \pmod{3}$,
+    we can simply find a representation of each $p_j$ and multiply the resulting Eisenstein integers to find the representation for $n$.    
+\end{remark}
 
 \begin{remark}
 In general, the \textbf{discriminant} $B^2 - 4AC$ of a quadratic form $Ax^2 + Bxy + Cy^2$ will tell us about the values it takes:
