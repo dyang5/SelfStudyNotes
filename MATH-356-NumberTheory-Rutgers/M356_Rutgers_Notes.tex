@@ -896,4 +896,57 @@ A quadratic form $Q$ is \textbf{indefinite} if its sign does change. \\
     \]
 \end{remark}
 
+After our brief interlude on degeneracy, discriminants, definite and indefinite quadratic forms, let's revisit the question of 
+what $n$ are represented in the quadratic form $Q(x, y) = Ax^2 + Bxy + Cy^2$. \\
+
+\begin{definition}[Primitive Quadratic Form]
+A quadratic form $Q = [A, B, C]$ is \textbf{primitive} if $\mathrm{gcd}(A, B, C) = 1$. 
+\end{definition}
+A similar yet more specific question may be the following: which $n$ are primitively represented (meaning $Q(x, y) = n$ where $\mathrm{gcd}(x, y) = 1$) by $Q$? \\
+
+\begin{answer}
+For a specific quadratic $Q$, we can figure out all values $Q$ takes on mod $p$ by simply calculating $p^2$ values and taking them mod $p$.
+In this strategy, we keep $Q$ constant a>nd change values of $x$ and $y$, calculating the respective modulos. \\
+
+A dual approach is to fix $x$ and $y$ and change $Q$. To illustrate this idea, consider
+\[
+    Q_1(x, y) = x^2 + y^2
+\]
+and replace $x$ with $x+y$ to create the new quadratic form
+\[
+    Q_2(x, y) = (x+y)^2 + y^2.
+\]
+
+Note that $Q_2$ represents the same solutions as $Q_1$, any values $x = a, y = b$ in $Q_1$ have identical values $x = a - b, y = b$ in $Q_2$.
+The main takeaway here is that $Q_1$ and $Q_2$ differ by $\Z$-invertible linear change of variables. \\
+
+We can work more generally using the group $GL_2(\Z)$, the group of two-by-two invertible matrices (which must have determinant $\pm 1$) in the integers. \end{answer}
+
+Let $Q = [A, B, C]$, and let 
+$\gamma = \begin{pmatrix}
+    a & b \\
+    c & d \\
+\end{pmatrix}$
+be an element in $GL_2(\Z)$. Then $Q_1 = Q \circ \gamma$ represents the same $n$ as $Q$. Note that
+\begin{align*}
+    Q_1(x, y) &= 
+    Q\left( \begin{pmatrix}
+        a & b \\
+        c & d \\
+    \end{pmatrix} 
+    \begin{pmatrix}
+        x \\
+        y\\
+    \end{pmatrix}
+    \right) \\
+    &= Q(ax + by, cx + dy) \\
+    &= A(ax+by)^2 + B(ax+by)(cx+dy) + C(cx+dy)^2
+    &= A_1 x^2 + B_1 xy + C_1 y^2
+\end{align*}
+
+where $A_1 = Aa^2 + Bac + Cc^2 = Q(a, c)$, $B_1 = A(2ab) + B(ad + bc) + C(2cd)$, and $C_1 = Ab^2 + Bbd + Cd^2 = Q(b, d)$.
+
+\begin{eg}[Work through ex on minute 18]
+    asdas
+\end{eg}
 \end{document}
