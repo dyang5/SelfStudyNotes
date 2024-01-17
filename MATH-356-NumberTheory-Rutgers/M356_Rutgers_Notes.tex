@@ -940,7 +940,7 @@ be an element in $GL_2(\Z)$. Then $Q_1 = Q \circ \gamma$ represents the same $n$
     \end{pmatrix}
     \right) \\
     &= Q(ax + by, cx + dy) \\
-    &= A(ax+by)^2 + B(ax+by)(cx+dy) + C(cx+dy)^2
+    &= A(ax+by)^2 + B(ax+by)(cx+dy) + C(cx+dy)^2 \\
     &= A_1 x^2 + B_1 xy + C_1 y^2
 \end{align*}
 
@@ -996,8 +996,13 @@ Thus, $Q(1, 0) = Q_0(1, 1)$, for $Q = [1, -1, 5]$.
 We can formalize this duality process of fixing $x$ and $y$ and varying $Q$ as follows.
 
 \begin{definition}[Equivalent Quadratic Forms]
-The quadratic forms $Q_1$ and $Q_2$ are equivalent, denoted $Q_1 \sim Q_2$, if there exists some matrix
-$\gamma \in SL_2(\Z)$ ($2 \times 2$ matrices with determinant $1$) such that $Q_1 = Q_2 \circ \gamma$.
+The quadratic forms $Q_1$ and $Q_2$ are \textbf{equivalent}, denoted $Q_1 \sim Q_2$, if there exists some matrix
+$\gamma \in SL_2(\Z)$ ($2 \times 2$ matrices with determinant $1$) such that $Q_1 = Q_2 \circ \gamma$. \\
+
+Given a form $Q$, the \textbf{equivalence class} of $Q$, denoted $[Q]$, is the set of all forms equivalent to $Q$:
+\[
+    [Q] = \{ Q^{\prime}  \mid Q^{\prime} \sim Q \}. 
+\]
 \end{definition}
 
 \begin{lemma}[Equivalent Forms Represent Same Numbers]
@@ -1032,5 +1037,42 @@ This lemma tells us that if we started with $Q = [1, -1, 5]$ instead of $Q_0 = [
 different $x$ and $y$, we would get the same values but shuffled around.
 \end{remark}
 
+\begin{theorem}
+If two quadratic forms $Q_1$ and $Q_2$ are equivalent, their discriminants are equal.
+\end{theorem}
 
+\textit{One proof follows directly from algebra involving the coefficients of an equivalent quadratic form, described previously. Our proof will be more elegant.}
+
+\begin{definition}[Half-Hessian Matrix (Gram Matrix)]
+If $Q = [A, B, C]$, its \textbf{Gram Matrix} (or \textbf{Half-Hessian Matrix}) is
+\[
+    M = \frac{1}{2} \begin{pmatrix}
+        2A & B  \\
+        B & 2C  \\
+    \end{pmatrix} =
+    \begin{pmatrix}
+        A & \frac{B}{2}  \\
+        \frac{B}{2} & C  \\
+    \end{pmatrix}
+\]
+
+with $\det M = -\frac{1}{4} D_Q$. Furthermore,
+\[
+    Q(x, y) = \begin{pmatrix}
+        x & y  \\
+    \end{pmatrix} M \begin{pmatrix}
+        x \\
+        y \\
+    \end{pmatrix}.
+\]
+\end{definition}
+
+\begin{remark}
+This holds for any general quadratic form.
+\end{remark}
+
+\begin{proof}
+
+
+\end{proof}
 \end{document}
