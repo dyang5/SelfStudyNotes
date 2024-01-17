@@ -1107,7 +1107,8 @@ it follows that $D_{Q_1} = D_{Q_2}$, as desired.
 \end{proof}
 
 One lingering question that remains is to understand equivalences on quadratic forms $Q_1$ and $Q_2$ in terms of 
-what they do to the roots $\alpha_{1}$ and $\alpha_2$ of $Q_1(x, 1)$ and $Q_2(x, 1)$, respectively. \\
+what they do to the roots $\alpha_{1}$ and $\alpha_2$ of $Q_1(x, 1)$ and $Q_2(x, 1)$, respectively. For the notes below, we will
+focus on the definite form case ($D_{Q_1} = D_{Q_2} < 0$). \\
 
 \begin{theorem}
 If $Q_2 = \gamma \circ Q_1$ (so $Q_2 \sim Q_1$, with $\gamma \in SL_2(\Z)$), then 
@@ -1136,6 +1137,68 @@ Substituting these results into the above expressions, we find that
 \]
 \end{proof}
 
-With these tools under our belt, we now have a geometric reduction algorithm:
+\subsection{Reduction Theory of Quadratic Forms}
+With these tools under our belt, we now have a geometric reduction algorithm. \\
+
+Let 
+\[ T = \begin{pmatrix}
+    1 & 1  \\
+    0 & 1  \\
+\end{pmatrix} \text{ and } 
+S = \begin{pmatrix}
+    0 & 1  \\
+    -1 & 0  \\
+\end{pmatrix}.\]
+
+Note that $T \circ \alpha = \alpha + 1$ and $S \circ \alpha = -\frac{\overline{\alpha} }{|\alpha|^2}$ 
+($S$ is a sort of inversion about the unit circle: it brings points outside in and points inside out.) \\
+
+Our reduction algorithm works as follows:
+\begin{itemize}
+    \item Apply $T$ or $T^{-1}$ to make $|\mathrm{Re} \, \alpha| < \frac{1}{2}$.
+    \item Use $S$ to get outside the unit circle.
+    \item Continue above two steps until neither of them reduces $\alpha$.
+\end{itemize}
+
+\begin{eg}
+Let $\alpha = \frac{10}{3} + \frac{1}{2}i$.
+\begin{itemize}
+    \item $\alpha_1 = T^{-3} \circ \alpha = \frac{1}{3} + \frac{1}{2}i$ 
+    \item $\alpha_2 = S \circ \alpha_1 = \frac{-12}{13} + \frac{18}{13}i$
+    \item $\alpha_3 = T \circ \alpha_2 = \frac{1}{13} + \frac{18}{13}i$
+\end{itemize}
+\end{eg}
+
+To apply this idea to reducing quadratic forms, we will reduce a quadratic form $Q$ by reducing $\alpha$.
+\begin{eg}
+Begin with $Q = [7, -11, 5]$, which has $D_Q = -19$ and $\alpha_Q = \frac{11}{14} + \frac{\sqrt{19}i }{14}$.
+    \begin{itemize}
+        \item $\alpha_1 = T^{-1} \circ \alpha = \frac{11}{14} + \frac{\sqrt{19}i }{14}$.
+        \item $\alpha_2 = S \circ \alpha_1 = \frac{42}{19} + \frac{14\sqrt{19}i }{19}$.
+        \item $\alpha_3 = T^{-2} \circ \alpha_2 = \frac{4}{19} + \frac{14\sqrt{19}i }{19}$.
+    \end{itemize}
+    
+    In summary, we have that
+    \[
+        \alpha_3 = (T^{-2} S T^{-1}) \circ \alpha = \begin{pmatrix}
+        2     & -1  \\
+        -1    &  1  \\
+        \end{pmatrix} \circ \alpha
+    \]
+
+    Consequently, our reduced quadratic form is
+    \begin{align*}
+        Q_2 &= Q_1 \circ \left( \begin{pmatrix}
+            2     & -1  \\
+            -1    &  1  \\
+            \end{pmatrix}\right)^{-1} \\
+            &= Q_1 \circ \left( \begin{pmatrix}
+            1     & 1  \\
+            1    &  2  \\
+            \end{pmatrix}\right)^{-1} \\
+            &= [1, 1, 5].
+    \end{align*}
+\end{eg}
+
 
 \end{document}
