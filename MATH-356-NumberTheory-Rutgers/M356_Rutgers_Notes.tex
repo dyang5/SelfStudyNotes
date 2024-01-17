@@ -946,7 +946,91 @@ be an element in $GL_2(\Z)$. Then $Q_1 = Q \circ \gamma$ represents the same $n$
 
 where $A_1 = Aa^2 + Bac + Cc^2 = Q(a, c)$, $B_1 = A(2ab) + B(ad + bc) + C(2cd)$, and $C_1 = Ab^2 + Bbd + Cd^2 = Q(b, d)$.
 
-\begin{eg}[Work through ex on minute 18]
-    asdas
+\begin{eg}
+Suppose we start with the quadratic form $Q_0 = [7, -11, 5]$.
+Let us change $Q_0$ to a new quadratic form $Q = Q_0 \circ \gamma$ and evaluate at $(1, 0)$. Suppose we want 
+\[
+    Q(1, 0) = Q_0(1, 1).
+\]
+
+Then we need some matrix in $GL_2(\Z)$ such that 
+\[
+    \begin{pmatrix}
+        a & b \\
+        c & d \\
+    \end{pmatrix} 
+    \begin{pmatrix}
+        1 \\
+        0\\
+    \end{pmatrix} =
+    \begin{pmatrix}
+        1 \\
+        1 \\
+    \end{pmatrix}.
+\]
+
+Solving gives us one such solution: $\begin{pmatrix}
+    a & b \\
+    c & d \\
+\end{pmatrix} = \begin{pmatrix}
+    1 & 0 \\
+    1 & 1 \\
+\end{pmatrix}.$ \\
+
+Consequently, we have that 
+\[
+    Q = Q_0 \circ \begin{pmatrix}
+        1 & 0 \\
+        1 & 1 \\
+    \end{pmatrix} = [7, -11, 5] \circ \begin{pmatrix}
+        1 & 0 \\
+        1 & 1 \\
+    \end{pmatrix}.
+\]
+
+From our above formula, we know that $Q = [A_1, B_1, C_1]$, where $A_1 = Q(a, c) = Q(1, 1) = 1$, $B_1 = 0-11+10 = -1$, and $C_1 = Q(b, d) = Q(0, 1) = 5$. \\
+
+Thus, $Q(1, 0) = Q_0(1, 1)$, for $Q = [1, -1, 5]$.
 \end{eg}
+
+We can formalize this duality process of fixing $x$ and $y$ and varying $Q$ as follows.
+
+\begin{definition}[Equivalent Quadratic Forms]
+The quadratic forms $Q_1$ and $Q_2$ are equivalent, denoted $Q_1 \sim Q_2$, if there exists some matrix
+$\gamma \in SL_2(\Z)$ ($2 \times 2$ matrices with determinant $1$) such that $Q_1 = Q_2 \circ \gamma$.
+\end{definition}
+
+\begin{lemma}[Equivalent Forms Represent Same Numbers]
+If $Q_1$ and $Q_2$ are two equivalent quadratic forms, then
+\[
+    \{ n \in \Z \mid \text{ there exists } x, y \in \Z, \, Q_1(x, y) = n\} = \{ n \in \Z \mid \text{ there exists } x, y \in \Z, \, Q_2(x, y) = n\}
+\]
+meaning that equivalent forms represent the same numbers.
+\end{lemma}
+
+\begin{proof}
+If $n = Q_1(x, y)$ then $n = Q_2(x_1, y_1)$, where $\gamma \begin{pmatrix}
+    x_1 \\
+    y_1 \\
+\end{pmatrix} = \begin{pmatrix}
+    x \\
+    y \\
+\end{pmatrix}$, so
+\[
+    \begin{pmatrix}
+        x_1 \\
+        y_1 \\
+    \end{pmatrix} = \gamma^{-1} \begin{pmatrix}
+        x \\
+        y \\
+    \end{pmatrix}. \qedhere
+\]
+\end{proof}
+
+\begin{remark}
+This lemma tells us that if we started with $Q = [1, -1, 5]$ instead of $Q_0 = [7, -11, 5]$ and wrote out the values for
+different $x$ and $y$, we would get the same values but shuffled around.
+\end{remark}
+
+
 \end{document}
