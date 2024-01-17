@@ -1037,7 +1037,7 @@ This lemma tells us that if we started with $Q = [1, -1, 5]$ instead of $Q_0 = [
 different $x$ and $y$, we would get the same values but shuffled around.
 \end{remark}
 
-\begin{theorem}
+\begin{theorem}\label{determinant_equivalent_quad_forms}
 If two quadratic forms $Q_1$ and $Q_2$ are equivalent, their discriminants are equal.
 \end{theorem}
 
@@ -1068,11 +1068,74 @@ with $\det M = -\frac{1}{4} D_Q$. Furthermore,
 \end{definition}
 
 \begin{remark}
-This holds for any general quadratic form.
+If $Q_2 = Q_1 \circ \gamma$ (or $Q_1 \sim Q_2$) then 
+\begin{align*}
+    \begin{pmatrix}
+        x & y  \\
+    \end{pmatrix} M_2 \begin{pmatrix}
+        x \\
+        y \\
+    \end{pmatrix} = Q_2(x,y) &= Q_1\left(\left[\gamma
+    \begin{pmatrix}
+        x \\
+        y \\
+    \end{pmatrix}\right]^T\right) \\
+    &= \left[\gamma
+    \begin{pmatrix}
+        x \\
+        y \\
+    \end{pmatrix}\right]^T
+    M_1
+    \left[\gamma
+    \begin{pmatrix}
+        x \\
+        y \\
+    \end{pmatrix}\right].
+\end{align*}
+
+As matrices, $M_2 = \gamma^T M_1 \gamma$.
 \end{remark}
 
-\begin{proof}
+\begin{proof}[Proof (of \cref{determinant_equivalent_quad_forms})]
+Suppose that $Q_1 \sim Q_2$. From the above remark, we know that $M_2 = \gamma^T M_1 \gamma$, so
+\[
+    \det M_2 = \det(\gamma^T M_1 \gamma) = \det(\gamma^T) \det(M_1) \det(\gamma) = \det(M_1)
+\]
 
-
+as $\gamma \in SL_2(\Z)$. Furthermore, since $\det M_1 = -\frac{1}{4}D_{Q_1}$ and $\det M_2 = -\frac{1}{4}D_{Q_2}$,
+it follows that $D_{Q_1} = D_{Q_2}$, as desired.
 \end{proof}
+
+One lingering question that remains is to understand equivalences on quadratic forms $Q_1$ and $Q_2$ in terms of 
+what they do to the roots $\alpha_{1}$ and $\alpha_2$ of $Q_1(x, 1)$ and $Q_2(x, 1)$, respectively. \\
+
+\begin{theorem}
+If $Q_2 = \gamma \circ Q_1$ (so $Q_2 \sim Q_1$, with $\gamma \in SL_2(\Z)$), then 
+\[
+    \alpha_2 = \gamma^{-1} \circ \alpha_1.
+\]
+\textit{Note: the $\gamma^{-1}$ acts as a fractional linear transformation.}
+\end{theorem}
+
+\begin{proof}
+Let $Q_1 = [A_1, B_1, C_1]$ and $Q_2 = [A_2, B_2, C_2]$ (where each discriminant is negative) and let $Q_2 \sim Q_1$, so that
+\[
+    Q_2 = Q_1 \circ \begin{pmatrix}
+        a & c \\
+        b & d \\
+    \end{pmatrix}.
+\]
+The roots are 
+\[
+\alpha_0 = \frac{-B_1 + \sqrt{|D|}i}{2A_1} \text{ and } \alpha_2 = \frac{-B_2 + \sqrt{|D|}i}{2A_{2}}.
+\]
+Recall that $A_2 = Q_1(a, c) = A_1a^2 + B_1ac + C_1c^2$ and $B_2 = A_1(2ab) + B_2(ad + bc) + C_2(2cd)$. 
+Substituting these results into the above expressions, we find that
+\[
+\alpha_2 = \gamma^{-1} \circ \alpha_1. \qedhere
+\]
+\end{proof}
+
+With these tools under our belt, we now have a geometric reduction algorithm:
+
 \end{document}
