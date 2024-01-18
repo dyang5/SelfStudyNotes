@@ -1,6 +1,6 @@
 \documentclass[11pt]{article}
-\usepackage{styletemplate}
-% \usepackage{header}
+% \usepackage{styletemplate}
+\usepackage{header}
 
 \begin{document}
 
@@ -616,7 +616,7 @@ Let's revisit some of our definitions for units, associates, and irreducible ele
 
 \begin{definition}
     \hfill
-    \vspace{-0.75cm}
+    \vspace{-0.25cm}
     \begin{itemize}
         \item $a \mid b$ if and only if $(b) \subseteq (a)$.
         \item $a$ is an \textbf{associate} of $b$ if and only if $(a) = (b)$.
@@ -1109,6 +1109,7 @@ it follows that $D_{Q_1} = D_{Q_2}$, as desired.
 One lingering question that remains is to understand equivalences on quadratic forms $Q_1$ and $Q_2$ in terms of 
 what they do to the roots $\alpha_{1}$ and $\alpha_2$ of $Q_1(x, 1)$ and $Q_2(x, 1)$, respectively. For the notes below, we will
 focus on the definite form case ($D_{Q_1} = D_{Q_2} < 0$). \\
+\newpage
 
 \begin{theorem}
 If $Q_2 = \gamma \circ Q_1$ (so $Q_2 \sim Q_1$, with $\gamma \in SL_2(\Z)$), then 
@@ -1151,15 +1152,27 @@ S = \begin{pmatrix}
 \end{pmatrix}.\]
 
 Note that $T \circ \alpha = \alpha + 1$ and $S \circ \alpha = -\frac{\overline{\alpha} }{|\alpha|^2}$ 
-($S$ is a sort of inversion about the unit circle: it brings points outside in and points inside out.) \\
+($S$ is an inversion about the unit circle: it brings points outside in and points inside out composed with a reflection about the $x$-axis.) \\
 
 Our reduction algorithm works as follows:
 \begin{itemize}
     \item Apply $T$ or $T^{-1}$ to make $|\mathrm{Re} \, \alpha| < \frac{1}{2}$.
     \item Use $S$ to get outside the unit circle.
-    \item Continue above two steps until neither of them reduces $\alpha$.
+    \item Continue above two steps until neither of them reduces $\alpha$, and we reach some 
+    $\alpha^{\prime} \in \{ z \in \mathbb{H} \mid |\mathrm{Re} \, \alpha^{\prime} | < \frac{1}{2}, \, |\alpha^{\prime}| > 1 \}$.
+    The region described above is known as the \textbf{fundamental domain}, which we denote as $\mathcal{F}$. 
 \end{itemize}
 
+\begin{proof}[Proof Sketch of Termination]
+As we move $z$ by $S$ and $T$, we apply $S$ if $z_1 = \gamma \circ z$ is in
+\[
+    \{ w \in \mathbb{H} \mid |\mathrm{Re} \, w | < \frac{1}{2}, \, |w| \leq 1, \, \mathrm{Im} w \geq  \mathrm{Im} z \}, 
+\]
+a compact region. If this process continues forever, we would get a limit point. However, the matrix $\gamma$ has integer entries -- the action is discrete
+and so there cannot be any limit points. \\
+
+Thus, our process halts, and does so once we are in the fundamental domain.
+\end{proof}
 \begin{eg}
 Let $\alpha = \frac{10}{3} + \frac{1}{2}i$.
 \begin{itemize}
@@ -1200,5 +1213,118 @@ Begin with $Q = [7, -11, 5]$, which has $D_Q = -19$ and $\alpha_Q = \frac{11}{14
     \end{align*}
 \end{eg}
 
+What makes our resulting form $Q$ with $\alpha_Q \in \mathcal{F}$ reduced? \\
 
+First, note that for $\alpha_Q = \frac{-B + \sqrt{|D|}i}{2A}$ to be in the fundamental domain, we must have that
+\[
+    | \mathrm{Re} \, \alpha| = \left|\frac{-B}{2A}\right|< \frac{1}{2}.
+\]
+This occurs if and only if $|B| \leq |A|$. Assume that $Q$ is positive definite. Since $Q(1, 0) = A > 0$, then this condition is equivalent to
+the condition $|B| < A$. \\
+
+The other condition for $\alpha_Q$ to be in the fundamental region is for the norm to be greater than or equal to $1$:
+\begin{align*}
+    1 \leq |\alpha_Q|^2 &= \frac{1}{4A^2} \left[ B^2 + |D| \right] \\
+    &= \frac{1}{4A^2} \left[ B^2 - |D| \right] \\
+    &= \frac{1}{4A^2} \left[ B^2 - (B^2 - 4AC) \right] \\
+    &= \frac{C}{A}.
+\end{align*}
+
+Simplifying, we get the condition that $A \leq C$. 
+
+\begin{lemma}[Reduced Quadratic Form]
+A quadratic form $Q = [A, B, C]$ is \textbf{reduced} if
+\[
+    |B| \leq A \leq C.
+\]
+\end{lemma}
+
+\begin{exercise}
+Note that $Q(x,y) = x^2 + y^2 = [1, 0, 1]$ has discriminant $-4$. Are there any other reduced quadratic forms with discriminant $-4$?
+\end{exercise}
+
+\begin{answer}
+No. Note that $D = B^2 - 4AC = -4$ implies that $4AC - B^2 = 4$. Equivalently, $4AC = 4+B^2$. Since $A \leq C$ and $|B| \leq A$, we also have that
+\[
+    4A^2 \leq 4AC = 4 + B^2 \leq 4 + A^2.
+\]
+
+It follows that $4A^2 \leq 4 + A^2$, so $3A^2 \leq 4$, implying that $A = 0$ or $1$. Furthermore, since $4AC = 4 + B^2$, we know $B \equiv 0 \pmod 2$. \\
+
+The only reduced quadratic form that satisfies these conditions is $Q = [1, 0, 1]$. Thus, if $Q = [A, B, C]$ and $D_Q = -4$, then $Q \sim Q_0 = [1, 0, 1]$. 
+\end{answer}
+
+\begin{exercise}
+What about for the norm form of the Eisenstein integers: $Q(x, y) = x^2 - xy + y^2$? Are there other reduced forms that are not equivalent to $Q$?    
+\end{exercise}
+
+\begin{answer}
+Following a similar approach as the previous example, we find two solutions: $Q = [1, -1, 1]$ and $Q_1 = [1, 1, 1]$: however, the roots of $Q$ and $Q_1$ are $1+\omega$ and $\omega$, respectively. These solutions are equivalent (under the transformation $T$), but they both lie on the \textit{boundary} of the fundamental domain.
+\end{answer}
+
+\begin{lemma}
+If $Q = [A, B, C]$ and $D_{Q} = -3$, then $Q \sim [1, -1, 1]$.     
+\end{lemma}
+
+\begin{remark}
+This does not hold for every quadratic form though. Recall the norm form of $\Z[\sqrt{-5}]$ which is not a PID: $Q = x^2 + 5y^2 = [1, 0, 5]$. It can be shown that $[2, 2, 3]$ and $[1, 0, 5]$ are two valid quadratic forms (roots $\frac{-1}{2} + \frac{\sqrt{5}i}{2}$ and $\sqrt{-5}i $), each of which have discriminant $-20$.
+\end{remark}
+
+\begin{lemma}
+    If $Q = [A, B, C]$ and $D_{Q} = -20$, then $Q \sim [1, 0, 5]$ or $Q \sim [2, 2, 3]$.    
+\end{lemma}
+
+\begin{theorem}[Gauss]
+Let $Q$ be a positive definite form of discriminant $D < 0$. Then there exists finitely many reduced forms of discriminant $D$ such that $Q$ is equivalent to one of them. \\
+
+Equivalently, the number of reduced forms of a given negative discriminant is finite (finiteness of class number).
+\end{theorem}
+
+\begin{proof}
+If $Q$ has discriminant $D = B^2 - 4AC = -|D|$ and is reduced, $|B| \leq A \leq C$. \\
+
+Consequently, 
+\[
+    4A^2 \leq 4AC = B^2 + |D| \leq A^2 + |D|
+\]
+so $3A^2 \leq |D|$ and $A \leq \sqrt{\frac{|D|}{3}}$. \\
+
+Thus, the number of $A$'s is finite, and since $|B| \leq A$, the number of $B$'s is finite. $A$, $B$, and $D$ uniquely determine $C$, so the number of reduced forms of discriminant $D$ is finite.
+\end{proof}
+
+\section{Summary}
+Topics covered, in rough order, include:
+\begin{itemize}
+    \item Pythagorean Triples
+    \item Primitive integer points:
+    \[
+        \begin{dcases}
+            x = u^2 - v^2 \\
+            y = 2uv \\
+            z = u^2 + v^2
+        \end{dcases}
+    \]
+    with extension to rational points on $S^1$.
+    \item Discussion of which $z$ are hypotenuses (sums of two squares). This led to the following theorem
+    
+    \begin{theorem}[Sum of Squares]
+    A prime $p$ is a sum of squares: $p = u^2 + v^2$ if and only if $p = 2$ or $p \equiv 1 \pmod{4}$. \\
+
+    A number $n$ is a sum of squares: $n = u^2 + v^2$ if and only if for every prime $p \equiv 3 \pmod 4$, $\mathrm{ord}_p(n)$ is even. 
+    \end{theorem}
+    
+    which came from $\Z[i]$, a UFD, and we had an algorithm to find a given $u, v$ for $p \equiv 1 \pmod 4$. 
+    \item We expanded this discussion to other norm forms, like the norm form of the Eisenstein integers: $u^2 - uv + v^2$. 
+    
+    \begin{theorem}[Primes in Eisenstein Norm Form]
+    A prime $p$ can be expressed in Eisenstein norm form $p = u^2 - uv + v^2$ if and only if $p = 3$ or $p \equiv 1 \pmod{3}$. \\      
+    \end{theorem} 
+
+    Once again, the proof came from a study of $\Z[\omega]$, and we developed an algorithm to find $u, v$. 
+
+    \item More generally, we discussed quadratic forms: $n = Q(x, y)$.
+    \item Equivalence of Quadratic Forms
+    \item Reduction Theory of (Definite) Quadratic Forms 
+    \item Finiteness of Class Number
+\end{itemize}
 \end{document}
