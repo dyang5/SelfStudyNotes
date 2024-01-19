@@ -23,7 +23,7 @@ Feel free to message me with any suggestions or corrections at \href{mailto:dyan
 
 \newpage
 
-\section{Introduction to Fermat's Last Theorem}
+\section{Pythagorean Triples}
 
 \begin{theorem}[Fermat's Last Theorem, 1637]
 There are no positive integers $x$, $y$, $z$ that satisfy \[x^n + y^n = z^n\]
@@ -139,7 +139,8 @@ that $x^4 + y^4 = z^2$ in $\Z$ implies $xyz = 0$. \end{proof}
 
 \newpage
 
-\section{Modular Arithmetic}
+\section{Number Theory Basics}
+\subsection{Modular Arithmetic}
 
 \textit{Note: Basic modular arithmetic notes skipped due to prior knowledge. Important theorems/results added for completeness.}
 
@@ -546,7 +547,8 @@ Let $z = a^{\frac{p-1}{4}} = 4,334,787,849.$ Since $\mathrm{gcd}(z+i, p) = 235,5
 \] 
 \end{eg}
 
-\subsection{Norm Forms (and Eisenstein Integers)}
+\section{Norm Forms}
+\subsection{Introduction to Eisenstein Integers}
 
 \begin{definition}
 For $\omega = e^{\frac{2\pi i}{3}},$ the ring $\Z[\omega]$ consists of the \textbf{Eisenstein Integers}:
@@ -849,7 +851,7 @@ We can check that $p = 3571$ is a prime equivalent to $1 \pmod 3$. For ease of r
     we can simply find a representation of each $p_j$ and multiply the resulting Eisenstein integers to find the representation for $n$.    
 \end{remark}
 
-\subsection{Binary Quadratic Forms}
+\section{Binary Quadratic Forms}
 
 Thus far, we've studied $x^2 + y^2 = n$ and $x^2 - xy + y^2 = n$, the norm forms of the Gaussian and Eisenstein integers. 
 We know for what values of $n$ there are integer solutions, as well as how to efficiently find prime solutions to these equations. \\
@@ -872,6 +874,7 @@ In general, if the quadratic form factorizes, or has discriminant zero, the valu
 (either every integer or only perfect squares, respectively, can be achieved).
 \end{remark}
 
+\subsection{Types of Quadratic Forms}
 \begin{definition}[Degenerate Quadratic Forms]
 If a quadratic form $Q$ has discriminant zero, it is a \textbf{degenerate} quadratic form. \\
 
@@ -1109,7 +1112,6 @@ it follows that $D_{Q_1} = D_{Q_2}$, as desired.
 One lingering question that remains is to understand equivalences on quadratic forms $Q_1$ and $Q_2$ in terms of 
 what they do to the roots $\alpha_{1}$ and $\alpha_2$ of $Q_1(x, 1)$ and $Q_2(x, 1)$, respectively. For the notes below, we will
 focus on the definite form case ($D_{Q_1} = D_{Q_2} < 0$). \\
-\newpage
 
 \begin{theorem}
 If $Q_2 = \gamma \circ Q_1$ (so $Q_2 \sim Q_1$, with $\gamma \in SL_2(\Z)$), then 
@@ -1274,6 +1276,7 @@ This does not hold for every quadratic form though. Recall the norm form of $\Z[
     If $Q = [A, B, C]$ and $D_{Q} = -20$, then $Q \sim [1, 0, 5]$ or $Q \sim [2, 2, 3]$.    
 \end{lemma}
 
+\subsection{Finiteness of Class Number}
 \begin{theorem}[Gauss]
 Let $Q$ be a positive definite form of discriminant $D < 0$. Then there exists finitely many reduced forms of discriminant $D$ such that $Q$ is equivalent to one of them. \\
 
